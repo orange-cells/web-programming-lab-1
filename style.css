@@ -8,10 +8,26 @@
     padding-top: 10px;
 }
 img{
-    width: 50px;
+    width: 70px;
 }
 header{
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+header .cart-image{
+    position: relative;    
+}
+header .cart-image span{
+    display: flex;
+    width: 25px;
+    height: 25px;
+    justify-content: center;
+    align-items: center;
+    background-color: limegreen;
+    color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    right: 2px;
 }
