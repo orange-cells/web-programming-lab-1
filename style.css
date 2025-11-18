@@ -1,14 +1,20 @@
-﻿body {
+﻿@font-face {
+    font-family: 'FOT-Seurat Pro B';
+    src: url('fonts/FOT-Seurat Pro B.otf') format('opentype');
+}
+body {
+    background-color: blanchedalmond;
+    font-family: 'FOT-Seurat Pro B';
+    color: #74664B;
 }
 .container{
     width: 900px;
     max-width: 90vw;
     margin: auto;
     text-align: center;
-    padding-top: 10px;
 }
 img{
-    width: 70px;
+    width: 50px;
 }
 header{
     display: flex;
@@ -30,4 +36,20 @@ header .cart-image span{
     position: absolute;
     top: 50%;
     right: 2px;
+}
+.catalog .item img{
+    width: 80%;
+}
+.catalog{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.catalog .item{
+    background-color: bisque;
+    padding: 20px;
+    border-radius: 20px;
+}
+.catalog .item h2{
+    font-weight: 200;
 }
