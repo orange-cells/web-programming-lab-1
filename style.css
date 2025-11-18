@@ -6,8 +6,9 @@ body {
     background-color: blanchedalmond;
     font-family: 'FOT-Seurat Pro B';
     color: #74664B;
+    cursor: url('images/Animal-Crossing-leaf-cursor.png'), auto;
 }
-.container{
+.container {
     width: 900px;
     max-width: 90vw;
     margin: auto;
@@ -49,7 +50,25 @@ header .cart-image span{
     background-color: bisque;
     padding: 20px;
     border-radius: 20px;
+    line-height: 22px;
 }
 .catalog .item h2{
-    font-weight: 200;
+    font-size: medium;
+    letter-spacing: 1px;
 }
+.catalog .item .price{
+    font-size: smaller;
+    letter-spacing: 2px;
+}
+    .catalog .item button {
+        background-color: burlywood;
+        color: saddlebrown;
+        font-family: 'FOT-Seurat Pro B';
+        padding: 5px 10px;
+        line-height: 13px;
+        font-size: x-small;
+        border-radius: 15px;
+        margin-top: 10px;
+        border: none;
+        cursor: url('images/Clipped_image_20251118_235335 (1).png'), auto;
+    }
