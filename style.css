@@ -1,0 +1,17 @@
+﻿body {
+}
+.container{
+    width: 900px;
+    max-width: 90vw;
+    margin: auto;
+    text-align: center;
+    padding-top: 10px;
+}
+img{
+    width: 50px;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
