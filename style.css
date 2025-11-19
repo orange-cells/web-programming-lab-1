@@ -13,6 +13,7 @@ body {
     max-width: 90vw;
     margin: auto;
     text-align: center;
+    transition: transform 0.5s;
 }
 img{
     width: 50px;
@@ -78,18 +79,19 @@ header .cart-image span{
     width: 400px;
     font-size: 2vw;
     position: fixed;
-    top: 0;
-    bottom: 0;
-    right: -400px;
+    inset: 0 -400px 0 auto;
     display: grid;
     grid-template-rows: 50px 1fr 50px;
+    transition: 0.5s;
 }
-    .shoppingCart h1 {
-        margin: 4px 7px 50px 40px;
-        vertical-align: text-top;
-        text-align: left;
-        font-size: 2vw;
-    }
+body.showCart .shoppingCart{
+    right: 0;
+}
+.shoppingCart h1 {
+    margin: 4px 7px 50px 40px;
+    text-align: left;
+    font-size: 2vw;
+}
 .shoppingCart .button{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
