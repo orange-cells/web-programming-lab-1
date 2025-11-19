@@ -23,7 +23,7 @@ header{
     justify-content: space-between;
 }
 header .cart-image{
-    position: relative;    
+    position: relative;
 }
 header .cart-image span{
     display: flex;
@@ -43,7 +43,7 @@ header .cart-image span{
 }
 .catalog{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 20px;
 }
 .catalog .item{
@@ -53,11 +53,10 @@ header .cart-image span{
     line-height: 22px;
 }
 .catalog .item h2{
-    font-size: medium;
-    letter-spacing: 1px;
+    font-size: 1vw;
 }
 .catalog .item .price{
-    font-size: smaller;
+    font-size: 1vw;
     letter-spacing: 2px;
 }
     .catalog .item button {
@@ -66,7 +65,7 @@ header .cart-image span{
         font-family: 'FOT-Seurat Pro B';
         padding: 5px 10px;
         line-height: 13px;
-        font-size: x-small;
+        font-size: 1vw;
         border-radius: 15px;
         margin-top: 10px;
         border: none;
