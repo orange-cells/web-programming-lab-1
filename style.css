@@ -80,11 +80,29 @@ header .cart-image span{
     position: fixed;
     top: 0;
     bottom: 0;
-    right: 0;
+    right: -400px;
     display: grid;
     grid-template-rows: 50px 1fr 50px;
 }
+    .shoppingCart h1 {
+        margin: 4px 7px 50px 40px;
+        vertical-align: text-top;
+        text-align: left;
+        font-size: 2vw;
+    }
 .shoppingCart .button{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
+    .shoppingCart .productList .item {
+        display: grid;
+        grid-template-columns: 70px 150px 50px 1fr;
+        gap: 10px;
+        font-size: 1vw;
+        text-align: center;
+        align-items: center;
+    }
+    .shoppingCart .item:nth-child(2n+1){
+        background-color: olive;
+    }
+
