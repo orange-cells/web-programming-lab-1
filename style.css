@@ -87,6 +87,9 @@ header .cart-image span{
 body.showCart .shoppingCart{
     right: 0;
 }
+body.showCart header{
+    transform: translateX(-250px);
+}
 .shoppingCart h1 {
     margin: 4px 7px 50px 40px;
     text-align: left;
@@ -107,4 +110,3 @@ body.showCart .shoppingCart{
     .shoppingCart .item:nth-child(2n+1){
         background-color: olive;
     }
-
