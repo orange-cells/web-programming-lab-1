@@ -1,7 +1,9 @@
 ﻿let shoppingCartImg = document.querySelector('.cart-image');
+let shoppingCartImgSpan = document.querySelector('.cart-image span');
 let closeButton = document.querySelector('.shoppingCart .close')
 let body = document.querySelector('body');
 let catalog = document.querySelector('.catalog');
+let cartItems = document.querySelector('.productList');
 let cart = [];
 
 shoppingCartImg.addEventListener('click', () => {
@@ -32,4 +34,38 @@ const addToCart = (itemId) => {
     } else {
         cart[putItemInCart].quantity++;
     }
+    addCartToHTML();
+}
+
+const addCartToHTML = () => {
+    cartItems.innerHTML = '';
+    let totalQuantity = 0;
+
+    if (cart.length > 0) {
+        cart.forEach(item => {
+            totalQuantity = totalQuantity + item.quantity;
+            let newItem = document.createElement('div');
+            newItem.classList.add('item');
+            newItem.dataset.id = item.itemId;
+            let targetItem = document.getElementById(item.itemId);
+
+            newItem.innerHTML = `
+            <div class="image">
+                <img src="${targetItem.querySelector('img').getAttribute('src') }">
+            </div>
+            <div class="name">
+                ${targetItem.querySelector('h2').innerHTML}
+            </div>
+            <div class="price">
+                ${targetItem.querySelector('div.price').innerText.replace(' ₽', '') * item.quantity}
+            </div>
+            <div class="quantity">
+                <span class="less">-</span>
+                <span>${item.quantity}</span >
+                <span class="more">+</span>
+            </div>`;
+            cartItems.appendChild(newItem);
+        });
+    };
+    shoppingCartImgSpan.innerText = totalQuantity;
 }
