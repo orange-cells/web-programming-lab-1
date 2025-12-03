@@ -35,6 +35,7 @@ const addToCart = (itemId) => {
         cart[putItemInCart].quantity++;
     }
     addCartToHTML();
+    storeCartInfo();
 }
 
 const addCartToHTML = () => {
@@ -68,4 +69,13 @@ const addCartToHTML = () => {
         });
     };
     shoppingCartImgSpan.innerText = totalQuantity;
+}
+
+const storeCartInfo = () => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+if (localStorage.getItem('cart')) {
+    cart = JSON.parse(localStorage.getItem('cart'));
+    addCartToHTML();
 }
