@@ -75,6 +75,42 @@ const storeCartInfo = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+document.querySelector('.shoppingCart').addEventListener('click', (event) => {
+
+    let clickedButton = event.target;
+    let itemID = clickedButton.parentElement.parentElement.dataset.id;
+
+    if (clickedButton.classList.contains('less') || clickedButton.classList.contains('more')) {
+        let type = 'less';
+        if (clickedButton.classList.contains('more')) {
+            type = 'more';
+        }
+        changeCartQuantity(itemID, type);
+    }
+})
+
+const changeCartQuantity = (itemID, type) => {
+    let itemInCart = cart.findIndex((value) => value.itemId === itemID);
+    console.log(itemID, itemInCart, cart[itemID]);
+    if (itemInCart >= 0) {
+        switch (type) {
+            case 'more':
+                cart[itemInCart].quantity = cart[itemInCart].quantity + 1;
+                break;
+            default:
+                let changeQuantity = cart[itemInCart].quantity - 1;
+                if (changeQuantity > 0) {
+                    cart[itemInCart].quantity = changeQuantity;
+                } else {
+                    cart.splice(itemInCart, 1);
+                }
+                break;
+        }
+    }
+    addCartToHTML();
+    storeCartInfo();
+}
+
 if (localStorage.getItem('cart')) {
     cart = JSON.parse(localStorage.getItem('cart'));
     addCartToHTML();
