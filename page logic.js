@@ -4,6 +4,14 @@ let closeButton = document.querySelector('.shoppingCart .close')
 let body = document.querySelector('body');
 let catalog = document.querySelector('.catalog');
 let cartItems = document.querySelector('.productList');
+
+let makeOrder = document.querySelector('.shoppingCart .order');
+let closeCheckout = document.querySelector('.closeBtn');
+let order = document.querySelector('.orderBody');
+let popUp = document.querySelector('.popUp');
+let sendOrder = document.querySelector('.makeOrder');
+let totalSum = document.querySelector('.totalSum');
+
 let cart = [];
 
 shoppingCartImg.addEventListener('click', () => {
@@ -51,6 +59,7 @@ const addCartToHTML = () => {
             let targetItem = document.getElementById(item.itemId);
 
             newItem.innerHTML = `
+            <span class="remove">&times;</span>
             <div class="image">
                 <img src="${targetItem.querySelector('img').getAttribute('src') }">
             </div>
@@ -69,6 +78,7 @@ const addCartToHTML = () => {
         });
     };
     shoppingCartImgSpan.innerText = totalQuantity;
+    calculateTotalSum();
 }
 
 const storeCartInfo = () => {
@@ -76,14 +86,16 @@ const storeCartInfo = () => {
 }
 
 document.querySelector('.shoppingCart').addEventListener('click', (event) => {
-
     let clickedButton = event.target;
-    let itemID = clickedButton.parentElement.parentElement.dataset.id;
-
-    if (clickedButton.classList.contains('less') || clickedButton.classList.contains('more')) {
+    if (clickedButton.classList.contains('less') || clickedButton.classList.contains('more') || clickedButton.classList.contains('remove')) {
         let type = 'less';
+        let itemID = clickedButton.parentElement.parentElement.dataset.id;
         if (clickedButton.classList.contains('more')) {
             type = 'more';
+        }
+        if (clickedButton.classList.contains('remove')) {
+            type = 'remove';
+            itemID = clickedButton.parentElement.dataset.id;
         }
         changeCartQuantity(itemID, type);
     }
@@ -91,11 +103,13 @@ document.querySelector('.shoppingCart').addEventListener('click', (event) => {
 
 const changeCartQuantity = (itemID, type) => {
     let itemInCart = cart.findIndex((value) => value.itemId === itemID);
-    console.log(itemID, itemInCart, cart[itemID]);
     if (itemInCart >= 0) {
         switch (type) {
             case 'more':
                 cart[itemInCart].quantity = cart[itemInCart].quantity + 1;
+                break;
+            case 'remove':
+                cart.splice(itemInCart, 1);
                 break;
             default:
                 let changeQuantity = cart[itemInCart].quantity - 1;
@@ -111,7 +125,50 @@ const changeCartQuantity = (itemID, type) => {
     storeCartInfo();
 }
 
+function calculateTotalSum() {
+    let total = 0;
+    cart.forEach(item => {
+        let itemPrice = document.getElementById(item.itemId).querySelector('div.price').innerText.replace(' ₽', '');
+        total += itemPrice * item.quantity;
+    });
+    totalSum.textContent = `Итого: ${total} ₽`;
+    return total;
+}
+
 if (localStorage.getItem('cart')) {
     cart = JSON.parse(localStorage.getItem('cart'));
     addCartToHTML();
 }
+
+makeOrder.addEventListener('click', () => {
+    if (cart.length === 0) {
+        document.querySelector('.emptyCart').classList.add('display');
+    } else {
+        order.classList.add('open');
+    }
+});
+
+document.querySelector('.emptyCart .closeBtn').addEventListener('click', () => {
+    document.querySelector('.emptyCart').classList.remove('display');
+});
+
+closeCheckout.addEventListener('click', () => {
+    order.classList.remove('open');
+});
+
+document.querySelector('.orderBody .form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    localStorage.clear();
+    addCartToHTML();
+    body.classList.toggle('showCart');
+    popUp.classList.add('display');
+    order.classList.remove('open'); 
+});
+
+document.querySelector('.popUp .closeBtn').addEventListener('click', () => {
+    window.location.reload();
+})
+
+document.addEventListener('DOMContentLoaded', function () {
+    addCartToHTML();
+})
